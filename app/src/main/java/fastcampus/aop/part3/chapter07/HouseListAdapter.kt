@@ -14,18 +14,24 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 
+
+// 하단 바텀 시트 위쪽으로 올리면 나오는 리사이클러뷰
 class HouseListAdapter : ListAdapter<HouseModel, HouseListAdapter.ItemViewHolder>(differ) {
 
     inner class ItemViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(houseModel: HouseModel) {
+            // 제목
             val titleTextView = view.findViewById<TextView>(R.id.titleTextView)
+            // 가격
             val priceTextView = view.findViewById<TextView>(R.id.priceTextView)
+            // 썸네일
             val thumbnailImageView = view.findViewById<ImageView>(R.id.thumbnailImageView)
 
             titleTextView.text = houseModel.title
             priceTextView.text = houseModel.price
 
+            // 2:3 으로 이미지를 둥글 하게 적용 핸드폰마다 동일하게 나오게하기위해서 픽셀을 dp로 변환 dpToPx
             Glide
                 .with(thumbnailImageView.context)
                 .load(houseModel.imgUrl)
